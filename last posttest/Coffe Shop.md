@@ -103,17 +103,7 @@ Keterangan simbol: panah segitiga kosong = pewarisan, panah terbuka = asosiasi, 
   - Magic method lain yang sudah didefinisikan tetapi belum dipanggil langsung di alur program: `Pelanggan.__eq__` (membandingkan pelanggan lewat no HP) dan `DaftarMenu.__iter__` (agar daftar menu bisa di-loop).
 - **Tanpa anti-pattern:** tidak ada rantai `if/elif` yang mengecek `type()` atau string jenis untuk membedakan perilaku objek. Jenis menu dipilih lewat dictionary `JENIS_MENU`, jenis pembayaran lewat `METODE_BAYAR`, dan tiap kelas punya method `dari_input()` sendiri untuk menanyakan data tambahannya.
 
-## 4. Screenshot Output
-
-Menu utama, termasuk bukti abstract class tidak bisa diinstansiasi (baris `[Cek Abstraksi] TypeError: ...` di bagian atas):
-
-1. Tampilan Awal Menu Coffe Shop.png
-2. Tambah Menu.png
-3. Hapus Menu.png
-4. Buat Transaksi.png
-5. Keluar.png
-
-## 5. SOLID
+## 4. SOLID
 
 - **OCP (Open/Closed):** jenis minuman baru cukup dibuat sebagai subclass `Menu` dan didaftarkan di `JENIS_MENU` (ditambah satu baris teks pilihan jenis di `tambah_menu()`). Kelas `DaftarMenu`, `ItemPesanan`, dan `Transaksi` tidak perlu diubah karena hanya memanggil `hitung_harga()`, `rincian_tambahan()`, dan `tampilkan_info()`.
 - **DIP (Dependency Inversion):** `ItemPesanan` bergantung pada abstraksi `Menu`, bukan pada `Kopi`, `NonKopi`, atau `Blended` secara langsung. Selain itu `proses_bayar()` menerima objek pembayaran dari luar lewat parameter, jadi tidak terikat ke `Tunai` atau `QRIS` saja.
